@@ -64,12 +64,13 @@ func NewV2rayObfs(ctx context.Context, conn net.Conn, option *Option) (net.Conn,
 		return nil, err
 	}
 
-	if option.Mux {
-		conn = NewMux(conn, MuxOption{
-			ID:   [2]byte{0, 0},
-			Host: "127.0.0.1",
-			Port: 0,
-		})
-	}
+	// TODO: 不知道对不对，但是这里会导致卡住，所以先注视掉
+	// if option.Mux {
+	// 	conn = NewMux(conn, MuxOption{
+	// 		ID:   [2]byte{0, 0},
+	// 		Host: "127.0.0.1",
+	// 		Port: 0,
+	// 	})
+	// }
 	return conn, nil
 }
