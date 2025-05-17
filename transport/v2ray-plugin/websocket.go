@@ -67,12 +67,13 @@ func NewV2rayObfs(ctx context.Context, conn net.Conn, option *Option) (net.Conn,
 		return nil, err
 	}
 
-	if option.Mux {
-		conn = NewMux(conn, MuxOption{
-			ID:   [2]byte{0, 0},
-			Host: "127.0.0.1",
-			Port: 0,
-		})
-	}
+	// TODO: mux有问题，会导致链接卡主
+	// if option.Mux {
+	// 	conn = NewMux(conn, MuxOption{
+	// 		ID:   [2]byte{0, 0},
+	// 		Host: "127.0.0.1",
+	// 		Port: 0,
+	// 	})
+	// }
 	return conn, nil
 }
